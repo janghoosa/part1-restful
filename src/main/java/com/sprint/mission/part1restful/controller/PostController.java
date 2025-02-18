@@ -1,7 +1,7 @@
 package com.sprint.mission.part1restful.controller;
 
-import com.sprint.mission.part1restful.domain.Post;
 import com.sprint.mission.part1restful.dto.PostCreateDto;
+import com.sprint.mission.part1restful.dto.PostPageResponse;
 import com.sprint.mission.part1restful.dto.PostRequestDto;
 import com.sprint.mission.part1restful.dto.PostUpdateDto;
 import com.sprint.mission.part1restful.service.PostService;
@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -39,9 +39,14 @@ public class PostController {
     }
 
     @GetMapping
-    public List<PostRequestDto> getAllPosts() {
-        return postService.findAll();
+    public PostPageResponse getAllPosts(
+            @RequestParam(value = "pageNo", defaultValue = "0", required = false) int pageNo,
+            @RequestParam(value = "pageSize", defaultValue = "3", required = false) int pageSize,
+            @RequestParam(value = "sortBy", defaultValue = "id", required = false) String sortBy
+    ) {
+        return postService.searchAllPaging(pageNo, pageSize, sortBy);
     }
+
 
     @PutMapping("/{id}")
     public String updatePost(@PathVariable("") UUID id, @RequestBody PostUpdateDto postUpdateDto) {
