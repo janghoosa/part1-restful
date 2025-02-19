@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor
@@ -37,7 +38,7 @@ public class CommentServiceImpl implements CommentService{
     @Override
     public CommentResponseDto findById(Long id) {
 
-        Comment comment = commentRepository.findById(id).orElseThrow();
+        Comment comment = commentRepository.findById(id).orElseThrow(() -> new NoSuchElementException("comment not found"));
 
         return CommentResponseDto.fromEntity(comment);
     }
