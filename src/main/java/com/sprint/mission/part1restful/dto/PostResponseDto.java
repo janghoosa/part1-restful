@@ -1,8 +1,6 @@
 package com.sprint.mission.part1restful.dto;
 
-import java.util.UUID;
-
-public record PostRequestDto(
+public record PostResponseDto(
         Long id,
         String title,
         String content

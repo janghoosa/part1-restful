@@ -3,7 +3,7 @@ package com.sprint.mission.part1restful.service;
 import com.sprint.mission.part1restful.domain.Post;
 import com.sprint.mission.part1restful.dto.PostCreateDto;
 import com.sprint.mission.part1restful.dto.PostPageResponse;
-import com.sprint.mission.part1restful.dto.PostRequestDto;
+import com.sprint.mission.part1restful.dto.PostResponseDto;
 import com.sprint.mission.part1restful.dto.PostUpdateDto;
 import com.sprint.mission.part1restful.repository.PostRepository;
 import org.springframework.data.domain.Page;
@@ -21,24 +21,24 @@ public class PostService {
         this.postRepository = postRepository;
     }
 
-    public void create(PostCreateDto postCreateDto) {
+    public Post create(PostCreateDto postCreateDto) {
         Post post = new Post(postCreateDto);
-        postRepository.save(post);
+        return postRepository.save(post);
     }
 
-    public PostRequestDto find(Long id) {
+    public PostResponseDto find(Long id) {
         Post post = postRepository.findById(id).orElse(null);
-        PostRequestDto postRequestDto = new PostRequestDto(post.getId(),post.getTitle(), post.getContent());
-        return postRequestDto;
+        PostResponseDto postResponseDto = new PostResponseDto(post.getId(),post.getTitle(), post.getContent());
+        return postResponseDto;
     }
 
-    public List<PostRequestDto> findAll() {
+    public List<PostResponseDto> findAll() {
         List<Post> posts = postRepository.findAll();
-        List<PostRequestDto> postRequestDtos = posts.stream()
-                .map(post -> new PostRequestDto(post.getId(),post.getTitle(), post.getContent()))
+        List<PostResponseDto> postResponseDtos = posts.stream()
+                .map(post -> new PostResponseDto(post.getId(),post.getTitle(), post.getContent()))
                 .toList();
 
-        return postRequestDtos;
+        return postResponseDtos;
     }
 
     public void update(Long id, PostUpdateDto postUpdateDto) {
@@ -58,8 +58,8 @@ public class PostService {
 
         Page<Post> postPage = postRepository.findAll( pageable);
 
-        List<PostRequestDto> content = postPage.getContent().stream()
-                .map(post-> new PostRequestDto(post.getId(), post.getTitle(), post.getContent())) // mapToDto 메서드를 이용해 변환
+        List<PostResponseDto> content = postPage.getContent().stream()
+                .map(post-> new PostResponseDto(post.getId(), post.getTitle(), post.getContent())) // mapToDto 메서드를 이용해 변환
                 .toList();
 
         // PageResponse 객체 반환

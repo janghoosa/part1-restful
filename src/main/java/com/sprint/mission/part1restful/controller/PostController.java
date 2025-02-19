@@ -1,10 +1,12 @@
 package com.sprint.mission.part1restful.controller;
 
+import com.sprint.mission.part1restful.domain.Post;
 import com.sprint.mission.part1restful.dto.PostCreateDto;
 import com.sprint.mission.part1restful.dto.PostPageResponse;
-import com.sprint.mission.part1restful.dto.PostRequestDto;
+import com.sprint.mission.part1restful.dto.PostResponseDto;
 import com.sprint.mission.part1restful.dto.PostUpdateDto;
 import com.sprint.mission.part1restful.service.PostService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/posts")
@@ -27,36 +27,36 @@ public class PostController {
     }
 
     @PostMapping("")
-    public String createPost(@RequestBody PostCreateDto postCreateDto) {
+    public ResponseEntity<String> createPost(@RequestBody PostCreateDto postCreateDto) {
         postService.create(postCreateDto);
-        return "Post created successfully";
+        return ResponseEntity.ok("Post created successfully");
     }
 
     @GetMapping("/{id}")
-    public PostRequestDto getPost(@PathVariable Long id) {
-        return postService.find(id);
-
+    public ResponseEntity<PostResponseDto> getPost(@PathVariable Long id) {
+        PostResponseDto postResponseDto = postService.find(id);
+        return ResponseEntity.ok(postResponseDto);
     }
 
     @GetMapping
-    public PostPageResponse getAllPosts(
+    public ResponseEntity<PostPageResponse> getAllPosts(
             @RequestParam(value = "pageNo", defaultValue = "0", required = false) int pageNo,
             @RequestParam(value = "pageSize", defaultValue = "3", required = false) int pageSize,
             @RequestParam(value = "sortBy", defaultValue = "id", required = false) String sortBy
     ) {
-        return postService.searchAllPaging(pageNo, pageSize, sortBy);
+        PostPageResponse postPageResponse = postService.searchAllPaging(pageNo, pageSize, sortBy);
+        return ResponseEntity.ok(postPageResponse);
     }
 
-
     @PutMapping("/{id}")
-    public String updatePost(@PathVariable("") Long id, @RequestBody PostUpdateDto postUpdateDto) {
+    public ResponseEntity<String> updatePost(@PathVariable Long id, @RequestBody PostUpdateDto postUpdateDto) {
         postService.update(id, postUpdateDto);
-        return "Post updated successfully";
+        return ResponseEntity.ok("Post updated successfully");
     }
 
     @DeleteMapping("/{id}")
-    public String deletePost(@PathVariable Long id) {
+    public ResponseEntity<String> deletePost(@PathVariable Long id) {
         postService.delete(id);
-        return "Post deleted successfully";
+        return ResponseEntity.ok("Post deleted successfully");
     }
 }

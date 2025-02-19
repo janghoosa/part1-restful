@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class PostPageResponse{
-    List<PostRequestDto> content;
+    List<PostResponseDto> content;
     int pageNo;
     int pageSize;
     long totalElements;
