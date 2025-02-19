@@ -29,9 +29,6 @@ public class WeatherService {
 
     private static final Duration CACHE_DURATION = Duration.ofMinutes(30);
 
-    // 서울시 공공데이터 API 호출
-    private static final String API_URL = "https://data.seoul.go.kr/api/weather";
-
     public WeatherResponseDto getWeather(WeatherRequestDto request) {
         String location = request.location();
 

@@ -13,7 +13,7 @@ import java.net.URLEncoder;
 public class SeoulApiService {
     public String getCityData() throws IOException {
         StringBuilder urlBuilder = new StringBuilder("http://openapi.seoul.go.kr:8088"); // URL
-        urlBuilder.append("/" + URLEncoder.encode("644f4a48416d696e35354f524d5a66", "UTF-8")); // 인증키
+        urlBuilder.append("/" + URLEncoder.encode("76587865496d696e39337154664545", "UTF-8")); // 인증키
         urlBuilder.append("/" + URLEncoder.encode("xml", "UTF-8")); // 요청파일타입 (xml, json 등)
         urlBuilder.append("/" + URLEncoder.encode("CardSubwayStatsNew", "UTF-8")); // 서비스명
         urlBuilder.append("/" + URLEncoder.encode("1", "UTF-8")); // 요청시작위치
