@@ -13,7 +13,7 @@ public class WeatherController {
     private final WeatherService weatherService;
 
     @GetMapping("/{location}")
-    public WeatherResponseDto getWeather(@RequestParam String location) {
+    public WeatherResponseDto getWeather(@PathVariable String location) {
         WeatherRequestDto request = WeatherRequestDto.builder().location(location).build();
         return weatherService.getWeather(request);
     }

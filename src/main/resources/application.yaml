@@ -12,3 +12,9 @@ spring:
         hibernate:
             ddl-auto: update
         show-sql: true
+
+
+    api:
+        weather:
+            url: http://openapi.seoul.go.kr:8088
+            key: 644f4a48416d696e35354f524d5a66
