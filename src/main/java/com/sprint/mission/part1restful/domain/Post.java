@@ -3,31 +3,36 @@ package com.sprint.mission.part1restful.domain;
 
 import com.sprint.mission.part1restful.dto.PostCreateDto;
 import com.sprint.mission.part1restful.dto.PostUpdateDto;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-import java.util.UUID;
 
 @Entity
 @Getter
+@NoArgsConstructor
 public class Post {
 
     @Id
-    private  UUID id;
+    @GeneratedValue(strategy =  GenerationType.AUTO)
+    private Long id; //Post id
 
-    private String title;
-    private String content;
+    @Column(nullable = false)
+    private String title; //게시글 제목
 
-    private  UUID authorId;
+    @Column(nullable = false)
+    private String content; //게시글 내용
+
+    @Column(nullable = false)
+    private Long authorId; //작성자 id
 
 
-    protected Post() {}
 
     public Post(PostCreateDto postCreateDto){
-        this.id = UUID.randomUUID();
         this.title=postCreateDto.title();
         this.content=postCreateDto.content();
         this.authorId = postCreateDto.authorId();

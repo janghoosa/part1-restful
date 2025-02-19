@@ -33,7 +33,7 @@ public class PostController {
     }
 
     @GetMapping("/{id}")
-    public PostRequestDto getPost(@PathVariable UUID id) {
+    public PostRequestDto getPost(@PathVariable Long id) {
         return postService.find(id);
 
     }
@@ -49,13 +49,13 @@ public class PostController {
 
 
     @PutMapping("/{id}")
-    public String updatePost(@PathVariable("") UUID id, @RequestBody PostUpdateDto postUpdateDto) {
+    public String updatePost(@PathVariable("") Long id, @RequestBody PostUpdateDto postUpdateDto) {
         postService.update(id, postUpdateDto);
         return "Post updated successfully";
     }
 
     @DeleteMapping("/{id}")
-    public String deletePost(@PathVariable UUID id) {
+    public String deletePost(@PathVariable Long id) {
         postService.delete(id);
         return "Post deleted successfully";
     }

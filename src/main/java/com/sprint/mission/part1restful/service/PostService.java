@@ -13,7 +13,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class PostService {
@@ -27,7 +26,7 @@ public class PostService {
         postRepository.save(post);
     }
 
-    public PostRequestDto find(UUID id) {
+    public PostRequestDto find(Long id) {
         Post post = postRepository.findById(id).orElse(null);
         PostRequestDto postRequestDto = new PostRequestDto(post.getId(),post.getTitle(), post.getContent());
         return postRequestDto;
@@ -42,14 +41,14 @@ public class PostService {
         return postRequestDtos;
     }
 
-    public void update(UUID id, PostUpdateDto postUpdateDto) {
+    public void update(Long id, PostUpdateDto postUpdateDto) {
         Post post = postRepository.findById(id).orElse(null);
         post.update(postUpdateDto);
         postRepository.save(post);
 
     }
 
-    public void delete(UUID id) {
+    public void delete(Long id) {
         postRepository.deleteById(id);
     }
 
