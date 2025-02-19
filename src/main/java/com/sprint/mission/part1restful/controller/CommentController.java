@@ -1,8 +1,7 @@
 package com.sprint.mission.part1restful.controller;
 
-import com.sprint.mission.part1restful.domain.Comment;
-import com.sprint.mission.part1restful.dto.CreateCommentRequestDto;
 import com.sprint.mission.part1restful.dto.CommentResponseDto;
+import com.sprint.mission.part1restful.dto.CreateCommentRequestDto;
 import com.sprint.mission.part1restful.dto.UpdateCommentRequestDto;
 import com.sprint.mission.part1restful.service.CommentService;
 import lombok.RequiredArgsConstructor;
@@ -52,9 +51,9 @@ public class CommentController {
         return new ResponseEntity<>(rep, HttpStatus.OK);
     }
 
-    @GetMapping("/post/{id}")
-    public ResponseEntity<Map<String, Object>> findByPostIdComment(@PathVariable Long id){
-        List<CommentResponseDto> comments = commentService.findByPostId(id);
+    @GetMapping("/post/{postId}")
+    public ResponseEntity<Map<String, Object>> findByPostIdComment(@PathVariable Long postId){
+        List<CommentResponseDto> comments = commentService.findByPostId(postId);
 
         Map<String, Object> rep = new HashMap<>();
         rep.put("comment", comments);
@@ -65,8 +64,7 @@ public class CommentController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Map<String, Object>> updateComment(@PathVariable Long id,
-                                                             @RequestBody UpdateCommentRequestDto updateCommentRequestDto){
+    public ResponseEntity<Map<String, Object>> updateComment(@PathVariable Long id, @RequestBody UpdateCommentRequestDto updateCommentRequestDto) {
         CommentResponseDto comment = commentService.updateComment(id, updateCommentRequestDto);
 
         Map<String, Object> rep = new HashMap<>();

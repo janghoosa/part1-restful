@@ -17,16 +17,20 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;            // pk
+
+    @Column(name = "createAt")
     Instant createAt;   // 작성 날짜
+
+    @Column(name = "updateAt")
     Instant updateAt;   // 수정 날짜
 
-    @Column(nullable = false)
+    @Column(name = "userId", nullable = false)
     Long userId;        // 작성자 pk
 
-    @Column(nullable = false)
+    @Column(name = "postId", nullable = false)
     Long postId;        // 작성 게시글 pk
 
-    @Column(nullable = false)
+    @Column(name = "content", nullable = false)
     String content;     // 댓글 내용
 
     // 업데이트

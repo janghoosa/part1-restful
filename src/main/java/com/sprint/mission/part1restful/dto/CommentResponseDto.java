@@ -14,12 +14,23 @@ public class CommentResponseDto {
     Long postId;
     String content;
 
-    public CommentResponseDto(Comment comment) {
-        this.id = comment.getId();
-        this.createAt = comment.getCreateAt();
-        this.updateAt = comment.getUpdateAt();
-        this.userId = comment.getUserId();
-        this.postId = comment.getPostId();
-        this.content = comment.getContent();
+    public CommentResponseDto(Long id, Instant createAt, Instant updateAt, Long userId, Long postId, String content) {
+        this.id = id;
+        this.createAt = createAt;
+        this.updateAt = updateAt;
+        this.userId = userId;
+        this.postId = postId;
+        this.content = content;
+    }
+
+    public static CommentResponseDto fromEntity(Comment comment) {
+        return new CommentResponseDto(
+                comment.getId()
+                , comment.getCreateAt()
+                , comment.getUpdateAt()
+                , comment.getUserId()
+                , comment.getPostId()
+                , comment.getContent()
+        );
     }
 }
