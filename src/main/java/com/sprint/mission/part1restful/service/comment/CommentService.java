@@ -1,8 +1,8 @@
-package com.sprint.mission.part1restful.service;
+package com.sprint.mission.part1restful.service.comment;
 
-import com.sprint.mission.part1restful.dto.CommentResponseDto;
-import com.sprint.mission.part1restful.dto.CreateCommentRequestDto;
-import com.sprint.mission.part1restful.dto.UpdateCommentRequestDto;
+import com.sprint.mission.part1restful.dto.comment.CommentResponseDto;
+import com.sprint.mission.part1restful.dto.comment.CreateCommentRequestDto;
+import com.sprint.mission.part1restful.dto.comment.UpdateCommentRequestDto;
 
 import java.util.List;
 
