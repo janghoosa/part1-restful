@@ -1,4 +1,4 @@
-package com.sprint.mission.part1restful.dto;
+package com.sprint.mission.part1restful.dto.comment;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

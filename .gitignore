@@ -25,7 +25,6 @@ out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 
-
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
@@ -145,4 +144,7 @@ gradle-app.setting
 *.hprof
 
 # End of https://www.toptal.com/developers/gitignore/api/gradle,java,macos,windows
-/src/main/java/com/sprint/mission/part1restful/dto/RealtimeCityAirResponse.java
+
+# 환경 설정 파일 제외
+application.yaml
+application-*.yaml
