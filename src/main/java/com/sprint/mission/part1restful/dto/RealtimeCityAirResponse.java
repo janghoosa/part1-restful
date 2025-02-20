@@ -15,6 +15,7 @@ public class RealtimeCityAirResponse {
     @Getter
     @Setter
     public static class RealtimeCityAirData {
+        // 도시별 대기질 정보
         @JsonProperty("row")
         private List<Row> row;
     }
@@ -22,9 +23,12 @@ public class RealtimeCityAirResponse {
     @Getter
     @Setter
     public static class Row {
+        
+        // 도시 이름
         @JsonProperty("MSRSTE_NM")
         private String msrsteNm;
 
+        // 해당 도시의 미세먼지 농도(PM2.5)
         @JsonProperty("PM25")
         private Double pm25;
     }
