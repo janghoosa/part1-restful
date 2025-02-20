@@ -144,3 +144,7 @@ gradle-app.setting
 *.hprof
 
 # End of https://www.toptal.com/developers/gitignore/api/gradle,java,macos,windows
+
+# 환경 설정 파일 제외
+application.yaml
+application-*.yaml

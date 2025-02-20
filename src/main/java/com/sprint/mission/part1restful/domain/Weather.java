@@ -1,9 +1,6 @@
 package com.sprint.mission.part1restful.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.Instant;
@@ -18,8 +15,15 @@ public class Weather {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String location;
-    private String temperature;
-    private String condition;
+
+    @Column(name = "msrstename")
+    private String msrstename;
+
+    @Column(name = "grade")
+    private String grade;
+
+    @Getter
+    @Column(name = "recorded_at")
     private Instant recordedAt;
+
 }
