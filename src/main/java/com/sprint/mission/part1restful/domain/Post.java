@@ -31,7 +31,6 @@ public class Post {
     private Long authorId; //작성자 id
 
 
-
     public Post(PostCreateDto postCreateDto){
         this.title=postCreateDto.title();
         this.content=postCreateDto.content();
