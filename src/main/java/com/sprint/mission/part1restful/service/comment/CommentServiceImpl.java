@@ -15,7 +15,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor
@@ -53,6 +52,8 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public List<CommentResponseDto> findByPostId(Long postId) {
+
+        postIsExist(postId);
 
         List<Comment> comments = commentRepository.findByPostId(postId);
 
