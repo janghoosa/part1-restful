@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface PostService {
 
-    public Post create(PostCreateDto postCreateDto);
+    public PostResponseDto create(PostCreateDto postCreateDto);
 
     public PostResponseDto find(Long id);
 

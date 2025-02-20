@@ -20,9 +20,13 @@ import java.util.List;
 public class PostServiceImpl implements PostService{
     private final PostRepository postRepository;
 
-    public Post create(PostCreateDto postCreateDto) {
+    public PostResponseDto create(PostCreateDto postCreateDto) {
         Post post = new Post(postCreateDto);
-        return postRepository.save(post);
+
+        PostResponseDto postResponseDto = new PostResponseDto(
+                postCreateDto.authorId(), postCreateDto.title(), postCreateDto.content());
+        postRepository.save(post);
+        return postResponseDto;
     }
 
     public PostResponseDto find(Long id) {

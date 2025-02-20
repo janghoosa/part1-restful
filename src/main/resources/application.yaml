@@ -4,8 +4,7 @@ spring:
 
     datasource:
         driver-class-name: com.mysql.cj.jdbc.Driver
-        #url: jdbc:mysql://localhost:3306/part1-restful?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-        url: jdbc:mysql://localhost:3306/part1-restful?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+        url: jdbc:mysql://localhost:3306/part1-restful?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
         username: root
         password: 1234
 
@@ -13,7 +12,14 @@ spring:
         hibernate:
             ddl-auto: update
         show-sql: true
+        database-platform: org.hibernate.dialect.MySQLDialect
 
     weather:
         api:
-            service-key: "5454566156736b71373469564a4277"
+            service-key: 76587865496d696e39337154664545
+
+    springdoc:
+        api-docs:
+            path: /api-docs
+        swagger-ui:
+            path: /swagger-ui.html

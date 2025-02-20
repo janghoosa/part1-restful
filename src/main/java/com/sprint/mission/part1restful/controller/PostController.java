@@ -1,6 +1,6 @@
 package com.sprint.mission.part1restful.controller;
 
-import com.sprint.mission.part1restful.domain.Post;
+import com.sprint.mission.part1restful.apidocs.PostApiDocs;
 import com.sprint.mission.part1restful.dto.PostCreateDto;
 import com.sprint.mission.part1restful.dto.PostPageResponse;
 import com.sprint.mission.part1restful.dto.PostResponseDto;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/posts")
-public class PostController {
+public class PostController implements PostApiDocs {
     private final PostService postService;
 
     public PostController(PostService postService) {
@@ -27,9 +27,9 @@ public class PostController {
     }
 
     @PostMapping("")
-    public ResponseEntity<String> createPost(@RequestBody PostCreateDto postCreateDto) {
-        postService.create(postCreateDto);
-        return ResponseEntity.ok("Post created successfully");
+    public ResponseEntity<PostResponseDto> createPost(@RequestBody PostCreateDto postCreateDto) {
+        PostResponseDto postResponseDto = postService.create(postCreateDto);
+        return ResponseEntity.ok(postResponseDto);
     }
 
     @GetMapping("/{id}")
