@@ -1,5 +1,7 @@
 package com.sprint.mission.part1restful.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
