@@ -5,6 +5,7 @@ import com.sprint.mission.part1restful.dto.PostCreateDto;
 import com.sprint.mission.part1restful.dto.PostPageResponse;
 import com.sprint.mission.part1restful.dto.PostResponseDto;
 import com.sprint.mission.part1restful.dto.PostUpdateDto;
+import com.sprint.mission.part1restful.exception.post.PostNotFoundException;
 import com.sprint.mission.part1restful.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -30,7 +31,7 @@ public class PostServiceImpl implements PostService{
     }
 
     public PostResponseDto find(Long id) {
-        Post post = postRepository.findById(id).orElse(null);
+        Post post = postRepository.findById(id).orElseThrow(() -> new PostNotFoundException("post not found with id: " + id));
         PostResponseDto postResponseDto = new PostResponseDto(post.getId(),post.getTitle(), post.getContent());
         return postResponseDto;
     }
@@ -45,7 +46,7 @@ public class PostServiceImpl implements PostService{
     }
 
     public void update(Long id, PostUpdateDto postUpdateDto) {
-        Post post = postRepository.findById(id).orElse(null);
+        Post post = postRepository.findById(id).orElseThrow(() -> new PostNotFoundException("post not found with id: " + id));
         post.update(postUpdateDto);
         postRepository.save(post);
 
