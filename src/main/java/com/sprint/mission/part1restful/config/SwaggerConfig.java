@@ -10,13 +10,15 @@ import org.springframework.context.annotation.Configuration;
 public class SwaggerConfig {
     @Bean
     public OpenAPI openAPI() {
-        Info info = new Info()
-                .title("API Docs")
-                .version("v1")
-                .description("API Docs Practice");
-
         return new OpenAPI()
                 .components(new Components())
-                .info(info);
+                .info(apiInfo());
+    }
+
+    private Info apiInfo() {
+        return new Info()
+                .title("API Test") // API의 제목
+                .description("Let's practice Swagger UI") // API에 대한 설명
+                .version("1.0.0"); // API의 버전
     }
 }
